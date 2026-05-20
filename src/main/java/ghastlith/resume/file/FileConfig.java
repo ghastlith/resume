@@ -1,4 +1,4 @@
-package ghastlith.resume.generation;
+package ghastlith.resume.file;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import tools.jackson.dataformat.yaml.YAMLMapper;
 
 @Configuration
-public class GenerationConfig {
+public class FileConfig {
 
   @Bean
   YAMLMapper yamlMapper() {
