@@ -1,5 +1,7 @@
 package ghastlith.resume.generation.output;
 
+import java.util.Locale;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 import lombok.Getter;
@@ -12,10 +14,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Language {
 
-  EN_US("en"),
-  PT_BR("pt");
+  EN_US("en", Locale.US),
+  PT_BR("pt", Locale.of("pt", "BR"));
 
   private final String code;
+  private final Locale locale;
 
   private static final String DASH = "-";
   private static final String UNDERSCORE = "_";
