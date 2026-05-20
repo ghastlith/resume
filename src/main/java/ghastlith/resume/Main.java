@@ -1,11 +1,26 @@
 package ghastlith.resume;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import ghastlith.resume.argument.ArgumentProcessor;
+import ghastlith.resume.generation.ResumeGenerator;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @SpringBootApplication
+@AllArgsConstructor
+@Slf4j
 public class Main implements CommandLineRunner {
+
+  @Autowired private ApplicationContext context;
+  @Autowired private ArgumentProcessor argumentProcessor;
+  @Autowired private ResumeGenerator resumeGenerator;
+
+  private static final int BASE_ERROR_CODE = 1;
 
   public static void main(final String[] args) {
     SpringApplication.run(Main.class, args);
@@ -13,7 +28,13 @@ public class Main implements CommandLineRunner {
 
   @Override
   public void run(final String... args) throws Exception {
-    throw new Exception("method not implemented yet");
+    try {
+      final var arguments = argumentProcessor.parse(args);
+      resumeGenerator.generate(arguments);
+    } catch (Exception e) {
+      log.error("error when generating resume(s)", e);
+      SpringApplication.exit(context, () -> BASE_ERROR_CODE);
+    }
   }
 
 }
