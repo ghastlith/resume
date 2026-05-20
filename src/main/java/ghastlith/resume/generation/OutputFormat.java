@@ -1,4 +1,4 @@
-package ghastlith.resume.file;
+package ghastlith.resume.generation;
 
 /**
  * The output format specified for the generated resume file(s).
