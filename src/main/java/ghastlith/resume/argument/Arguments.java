@@ -1,10 +1,11 @@
 package ghastlith.resume.argument;
 
-import static ghastlith.resume.argument.OutputFormat.ALL;
+import static ghastlith.resume.file.OutputFormat.ALL;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ghastlith.resume.file.OutputFormat;
 import lombok.Getter;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Unmatched;
