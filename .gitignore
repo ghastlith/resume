@@ -8,9 +8,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-output/
-input/*
-!input/example.*
+/output/
+/input/*
+!/input/example.*
 
 # sts
 .apt_generated
