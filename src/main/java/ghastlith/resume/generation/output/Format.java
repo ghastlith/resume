@@ -1,10 +1,12 @@
-package ghastlith.resume.generation;
+package ghastlith.resume.generation.output;
 
 /**
  * The output format specified for the generated resume file(s).
  */
-public enum OutputFormat {
+public enum Format {
+
   ALL,
   PDF,
   MD,
+
 }
