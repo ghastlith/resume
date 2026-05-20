@@ -14,13 +14,13 @@ import java.util.ResourceBundle;
  * <p>
  * Currently supported i18n keys can be found on {@link MessageKey}
  */
-public class MessageResolver {
+public class I18nResolver {
 
   private static final String PROPERTIES_PATH = "i18n/messages";
 
   private final ResourceBundle bundle;
 
-  public MessageResolver(final Locale locale) {
+  public I18nResolver(final Locale locale) {
     this.bundle = loadBundle(locale);
   }
 
@@ -32,13 +32,13 @@ public class MessageResolver {
    * @param key the identyfing key for the localized string value
    * @return The locale specific message or key itself as fallback.
    */
-  public String get(final MessageKey key) {
-    final var i18nKey = key.getI18nKey();
+  public String get(final I18nKey key) {
+    final var messageKey = key.getMessageKey();
 
     try {
-      return bundle.getString(i18nKey);
+      return bundle.getString(messageKey);
     } catch (MissingResourceException e) {
-      return i18nKey;
+      return messageKey;
     }
   }
 

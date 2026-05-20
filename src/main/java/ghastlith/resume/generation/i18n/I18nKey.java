@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public enum MessageKey {
+public enum I18nKey {
 
   SECTION_EXPERIENCE("section.experience"),
   SECTION_EDUCATION("section.education"),
@@ -17,6 +17,6 @@ public enum MessageKey {
   ROLE_CURRENT("role.current"),
   DEGREE_ONGOING("degree.ongoing");
 
-  private final String i18nKey;
+  private final String messageKey;
 
 }
