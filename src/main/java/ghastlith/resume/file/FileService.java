@@ -29,8 +29,11 @@ public class FileService {
 
   private static final Path INPUT_FOLDER = Path.of("input");
   private static final Path OUTPUT_FOLDER = Path.of("output");
+
   private static final Set<String> YAML_EXTENSIONS = Set.of(".yml", ".yaml");
-  private static final String FILENAME_TEMPLATE = "cv - %s - %s.%s";
+
+  private static final String FILENAME_FORMAT = "cv - %s - %s.%s";
+  private static final String CREATED_LOG_FORMAT = "[{}] resume file was created at: {}";
 
   /**
    * Create input and output folders to be used when retrieving and populating
@@ -78,7 +81,7 @@ public class FileService {
    *
    * @param resume the {@link Resume} data parsed from YAML file
    * @param format the {@link Format} file extension
-   * @return The file to be populated with resume data
+   * @return The file path to be populated with resume data
    */
   public Path getNewFile(final Resume resume, final Format format) {
     if (!Files.isDirectory(OUTPUT_FOLDER)) {
@@ -88,9 +91,19 @@ public class FileService {
     final var language = resume.language().getCode();
     final var name = resume.name().toLowerCase();
     final var extension = format.getExtension();
-    final var filename = FILENAME_TEMPLATE.formatted(language, name, extension);
+    final var filename = FILENAME_FORMAT.formatted(language, name, extension);
 
     return OUTPUT_FOLDER.resolve(filename);
+  }
+
+  /**
+   * Log generic message when resume file is created and populated correctly.
+   *
+   * @param resume the file {@link Path} populated with resume data
+   * @param format the {@link Format} file extension
+   */
+  public void logNewFile(final Path path, final Format format) {
+    log.info(CREATED_LOG_FORMAT, format.name(), path);
   }
 
   private static boolean isYAMLFile(final Path path) {

@@ -42,6 +42,7 @@ public class MarkdownRenderer {
 
     try {
       Files.writeString(path, content);
+      fileService.logNewFile(path, FORMAT);
     } catch (IOException e) {
       log.error(IO_EXCEPTION_FORMAT, path, e);
     }
