@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import ghastlith.resume.file.output.Language;
 import ghastlith.resume.renderer.data.validation.Phone;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
@@ -21,7 +22,7 @@ public record Resume(
     URI github,
     @Email String email,
     @Phone String phone,
-    Optional<List<Experience>> experiences,
-    Optional<List<Degree>> degrees,
-    Optional<List<Certification>> certifications
+    Optional<List<@Valid Experience>> experiences,
+    Optional<List<@Valid Degree>> degrees,
+    Optional<List<@Valid Certification>> certifications
 ) {}
