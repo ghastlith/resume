@@ -4,8 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import ghastlith.resume.file.output.Language;
 import ghastlith.resume.generation.data.validation.Phone;
-import ghastlith.resume.generation.output.Language;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 

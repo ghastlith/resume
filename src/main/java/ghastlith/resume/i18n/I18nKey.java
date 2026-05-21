@@ -1,4 +1,4 @@
-package ghastlith.resume.generation.i18n;
+package ghastlith.resume.i18n;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

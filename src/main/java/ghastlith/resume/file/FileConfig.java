@@ -1,4 +1,4 @@
-package ghastlith.resume.generation.file;
+package ghastlith.resume.file;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

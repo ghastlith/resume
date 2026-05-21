@@ -1,4 +1,4 @@
-package ghastlith.resume.generation.output;
+package ghastlith.resume.file.output;
 
 import java.util.Locale;
 

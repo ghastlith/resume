@@ -36,8 +36,8 @@ dependencies {
   implementation("tools.jackson.core:jackson-databind:3.1.3");
   implementation("tools.jackson.dataformat:jackson-dataformat-yaml:3.1.3");
 
-  // picocli
-  implementation("info.picocli:picocli:4.7.7");
+  // pdf
+  implementation("com.itextpdf:itextpdf:5.5.13.5");
 }
 
 tasks.bootJar {

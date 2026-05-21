@@ -1,6 +1,4 @@
-package ghastlith.resume.generation.i18n;
-
-import static java.util.Locale.US;
+package ghastlith.resume.i18n;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -46,7 +44,7 @@ public class I18nResolver {
     try {
       return ResourceBundle.getBundle(PROPERTIES_PATH, locale);
     } catch (MissingResourceException e) {
-      return ResourceBundle.getBundle(PROPERTIES_PATH, US);
+      return ResourceBundle.getBundle(PROPERTIES_PATH, Locale.US);
     }
   }
 

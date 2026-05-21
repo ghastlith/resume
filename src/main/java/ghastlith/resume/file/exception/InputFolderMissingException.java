@@ -1,4 +1,4 @@
-package ghastlith.resume.generation.file.exception;
+package ghastlith.resume.file.exception;
 
 /**
  * {@link InputFolderMissingException} is thrown when root directory does not
