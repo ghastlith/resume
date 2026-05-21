@@ -1,4 +1,4 @@
-package ghastlith.resume.generation.data.validation;
+package ghastlith.resume.renderer.data.validation;
 
 import java.util.regex.Pattern;
 

@@ -1,4 +1,4 @@
-package ghastlith.resume.generation.data;
+package ghastlith.resume.renderer.data;
 
 import java.time.Year;
 

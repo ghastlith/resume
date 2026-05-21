@@ -1,4 +1,4 @@
-package ghastlith.resume.generation.data.validation;
+package ghastlith.resume.renderer.data.validation;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.RECORD_COMPONENT;

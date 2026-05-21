@@ -11,7 +11,7 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import ghastlith.resume.file.exception.InputFolderMissingException;
-import ghastlith.resume.generation.data.Resume;
+import ghastlith.resume.renderer.data.Resume;
 import lombok.RequiredArgsConstructor;
 import tools.jackson.dataformat.yaml.YAMLMapper;
 
