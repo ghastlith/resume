@@ -23,7 +23,7 @@ public class I18nResolver {
   }
 
   /**
-   * Retrieves the specific message based on bundled locale for desired i18n key.
+   * Retrieve the specific message based on bundled locale for desired i18n key.
    * <p>
    * Fallbacks to the message key parameter when string is not present on locale
    * bundle.
