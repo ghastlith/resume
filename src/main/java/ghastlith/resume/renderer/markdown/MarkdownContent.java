@@ -21,6 +21,7 @@ public class MarkdownContent {
 
   private static final String TITLE_FORMAT = "## %s - %s";
   private static final String COMPANY_FORMAT = "\n### %s\n";
+  private static final String DESCRIPTION_FORMAT = "%s.";
   private static final String TASK_FORMAT = "• %s;";
 
   /**
@@ -60,7 +61,9 @@ public class MarkdownContent {
   private void appendExperience(final Experience experience) {
     final var company = COMPANY_FORMAT.formatted(experience.company());
     append(company);
-    append(experience.description());
+
+    final var description = DESCRIPTION_FORMAT.formatted(experience.description());
+    append(description);
 
     experience.tasks()
         .orElse(emptyList())
