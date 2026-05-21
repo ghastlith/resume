@@ -32,7 +32,7 @@ public class FileService {
 
   private static final Set<String> YAML_EXTENSIONS = Set.of(".yml", ".yaml");
 
-  private static final String FILENAME_FORMAT = "cv - %s - %s.%s";
+  private static final String FILENAME_FORMAT = "(cv-%s) %s.%s";
   private static final String CREATED_LOG_FORMAT = "[{}] resume file was created at: {}";
 
   /**
