@@ -8,9 +8,9 @@ import java.util.ResourceBundle;
  * I18n message resolver to provide internationalization support for generated
  * resume key messages.
  * <p>
- * Currently supported Locales can be found on {@code resources/i18n/}
+ * Currently supported Locales can be found on {@code resources/i18n/}.
  * <p>
- * Currently supported i18n keys can be found on {@link MessageKey}
+ * Currently supported i18n keys can be found on {@link MessageKey}.
  */
 public class I18nResolver {
 
@@ -24,6 +24,7 @@ public class I18nResolver {
 
   /**
    * Retrieves the specific message based on bundled locale for desired i18n key.
+   * <p>
    * Fallbacks to the message key parameter when string is not present on locale
    * bundle.
    *
