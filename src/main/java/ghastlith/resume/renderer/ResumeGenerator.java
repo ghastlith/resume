@@ -51,6 +51,7 @@ public class ResumeGenerator {
   }
 
   private void generateDocument(final Resume resume) {
+    // TODO: implement this function
     // final var path = fileService.createPath(resume, DOCUMENT);
     System.out.println("method not implemented");
   }
