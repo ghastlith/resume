@@ -10,8 +10,8 @@ import ghastlith.resume.renderer.data.Resume;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Logging wrapper with generic messages for all possible file handling
- * scenarios.
+ * Logging wrapper with generic messages for common and useful audited file
+ * handling scenarios.
  */
 @Component
 @Slf4j
