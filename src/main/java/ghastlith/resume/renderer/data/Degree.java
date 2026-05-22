@@ -1,7 +1,6 @@
 package ghastlith.resume.renderer.data;
 
 import java.time.Year;
-import java.util.Optional;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,5 +12,5 @@ public record Degree(
     @NotBlank String institution,
     @NotBlank String degree,
     @NotNull Year from,
-    Optional<Year> to
+    Year to
 ) {}

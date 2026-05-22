@@ -1,8 +1,15 @@
 package ghastlith.resume.renderer.data;
 
+import static com.fasterxml.jackson.annotation.Nulls.AS_EMPTY;
+import static java.util.Comparator.comparing;
+import static java.util.Comparator.naturalOrder;
+import static java.util.Comparator.nullsLast;
+import static java.util.Comparator.reverseOrder;
+
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
+
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import ghastlith.resume.file.output.Language;
 import ghastlith.resume.renderer.data.validation.Phone;
@@ -23,7 +30,45 @@ public record Resume(
     @NotNull URI github,
     @Email String email,
     @Phone String phone,
-    Optional<List<@Valid Experience>> experiences,
-    Optional<List<@Valid Degree>> degrees,
-    Optional<List<@Valid Certification>> certifications
-) {}
+    @JsonSetter(nulls = AS_EMPTY)
+    List<@Valid Experience> experiences,
+    @JsonSetter(nulls = AS_EMPTY)
+    List<@Valid Degree> degrees,
+    @JsonSetter(nulls = AS_EMPTY)
+    List<@Valid Certification> certifications
+) {
+
+  public List<Experience> sortedExperiences() {
+    final var comparator = comparing(Experience::to, nullsLast(naturalOrder()))
+        .reversed()
+        .thenComparing(Experience::from, reverseOrder());
+
+    return experiences()
+        .stream()
+        .sorted(comparator)
+        .toList();
+  }
+
+  public List<Degree> sortedDegrees() {
+    final var comparator = nullsLast(comparing(Degree::to))
+        .reversed()
+        .thenComparing(Degree::from, reverseOrder());
+
+    return degrees()
+        .stream()
+        .sorted(comparator)
+        .toList();
+  }
+
+  public List<Certification> sortedCertifications() {
+    final var comparator = comparing(Certification::year)
+        .reversed()
+        .thenComparing(Certification::certification);
+
+    return certifications()
+        .stream()
+        .sorted(comparator)
+        .toList();
+  }
+
+}

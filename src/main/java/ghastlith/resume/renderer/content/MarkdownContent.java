@@ -1,8 +1,5 @@
 package ghastlith.resume.renderer.content;
 
-import static java.util.Collections.emptyList;
-import static java.util.Comparator.comparing;
-
 import ghastlith.resume.renderer.data.Experience;
 import ghastlith.resume.renderer.data.Resume;
 import lombok.RequiredArgsConstructor;
@@ -39,12 +36,7 @@ public class MarkdownContent {
   public String build() {
     appendNameTitle();
 
-    resume.experiences()
-        .orElse(emptyList())
-        .stream()
-        .sorted(comparing(Experience::from).reversed())
-        .toList()
-        .forEach(this::appendExperience);
+    resume.sortedExperiences().forEach(this::appendExperience);
 
     return builder.toString();
   }
@@ -64,10 +56,9 @@ public class MarkdownContent {
     builder.append(description);
 
     experience.tasks()
-        .orElse(emptyList())
         .stream()
         .map(TASK_FORMAT::formatted)
-        .forEach(task -> builder.append(task));
+        .forEach(builder::append);
   }
 
 }

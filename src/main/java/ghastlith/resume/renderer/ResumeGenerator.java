@@ -1,21 +1,19 @@
 package ghastlith.resume.renderer;
 
 import static ghastlith.resume.file.output.Format.MARKDOWN;
-import static java.util.stream.Collectors.toUnmodifiableSet;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
-import ghastlith.resume.file.FileEventLogger;
 import ghastlith.resume.file.FileService;
 import ghastlith.resume.renderer.content.MarkdownContent;
 import ghastlith.resume.renderer.data.Resume;
 import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.Validator;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,13 +22,16 @@ import lombok.extern.slf4j.Slf4j;
  * operations.
  */
 @Component
+@Validated
 @RequiredArgsConstructor
 @Slf4j
 public class ResumeGenerator {
 
-  private final Validator validator;
   private final FileService fileService;
-  private final FileEventLogger fileEventLogger;
+
+  private static final String CREATED_LOG_FORMAT = "[{}] resume file was created at: {}";
+  private static final String FAILURE_LOG_FORMAT = "an error happened while trying to save file {}: {}";
+  private static final String ENTRIES_LOG_FORMAT = "{} YAML data files found on input folder";
 
   /**
    * Generate supported resume files for every YAML data file present on designed
@@ -38,11 +39,8 @@ public class ResumeGenerator {
    *
    * @throws ConstraintViolationException If resume entries have parsing errors.
    */
-  public void generate() {
-    final var entries = fileService.readEntries();
-
-    fileEventLogger.count(entries);
-    validate(entries);
+  public void generate(@Valid final List<Resume> entries) {
+    log.warn(ENTRIES_LOG_FORMAT, entries.size());
 
     for (final var entry : entries) {
       generateDocument(entry);
@@ -51,8 +49,15 @@ public class ResumeGenerator {
   }
 
   private void generateDocument(final Resume resume) {
-    // TODO: implement this function
     // final var path = fileService.createPath(resume, DOCUMENT);
+    // final var content = DocumentContent.with(resume).build();
+
+    // try {
+    // TODO: save DOCUMENT here.
+    // log.info(CREATED_LOG_FORMAT, DOCUMENT.name(), path);
+    // } catch (IOException e) {
+    // log.error(FAILURE_LOG_FORMAT, path, e);
+    // }
     System.out.println("method not implemented");
   }
 
@@ -62,20 +67,9 @@ public class ResumeGenerator {
 
     try {
       Files.writeString(path, content);
-      fileEventLogger.created(path, MARKDOWN);
+      log.info(CREATED_LOG_FORMAT, MARKDOWN.name(), path);
     } catch (IOException e) {
-      fileEventLogger.failure(path, e);
-    }
-  }
-
-  private void validate(final List<Resume> entries) {
-    final var violations = entries.stream()
-        .map(validator::validate)
-        .flatMap(Set::stream)
-        .collect(toUnmodifiableSet());
-
-    if (!violations.isEmpty()) {
-      throw new ConstraintViolationException(violations);
+      log.error(FAILURE_LOG_FORMAT, path, e);
     }
   }
 
