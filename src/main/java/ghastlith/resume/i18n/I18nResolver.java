@@ -41,7 +41,7 @@ public class I18nResolver {
     }
   }
 
-  private static ResourceBundle loadBundle(final Locale locale) {
+  private ResourceBundle loadBundle(final Locale locale) {
     try {
       return ResourceBundle.getBundle(PROPERTIES_PATH, locale);
     } catch (MissingResourceException e) {
