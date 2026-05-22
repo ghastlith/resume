@@ -9,6 +9,7 @@ import ghastlith.resume.renderer.data.validation.Phone;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * The information to be used in the resume generation, mapped from YAML input
@@ -18,8 +19,8 @@ public record Resume(
     Language language,
     @NotBlank String name,
     @NotBlank String role,
-    URI linkedin,
-    URI github,
+    @NotNull URI linkedin,
+    @NotNull URI github,
     @Email String email,
     @Phone String phone,
     Optional<List<@Valid Experience>> experiences,
