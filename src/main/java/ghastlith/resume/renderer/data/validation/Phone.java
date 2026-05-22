@@ -15,7 +15,7 @@ import jakarta.validation.Payload;
  * Custom annotation to help validate phone number.
  */
 @Documented
-@Target({ RECORD_COMPONENT, FIELD })
+@Target({ FIELD, RECORD_COMPONENT })
 @Retention(RUNTIME)
 @Constraint(validatedBy = PhoneValidator.class)
 public @interface Phone {
