@@ -8,13 +8,10 @@ import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
-import ghastlith.resume.file.exception.InputFolderMissingException;
-import ghastlith.resume.file.exception.OutputFolderMissingException;
 import ghastlith.resume.file.output.Format;
 import ghastlith.resume.renderer.data.Resume;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import tools.jackson.dataformat.yaml.YAMLMapper;
 
 /**
@@ -22,54 +19,28 @@ import tools.jackson.dataformat.yaml.YAMLMapper;
  */
 @Component
 @RequiredArgsConstructor
-@Slf4j
 public class FileService {
 
   private final YAMLMapper yamlMapper;
 
   private static final Path INPUT_FOLDER = Path.of("input");
   private static final Path OUTPUT_FOLDER = Path.of("output");
-
   private static final Set<String> YAML_EXTENSIONS = Set.of(".yml", ".yaml");
-
   private static final String FILENAME_FORMAT = "(cv-%s) %s.%s";
-  private static final String CREATED_LOG_FORMAT = "[{}] resume file was created at: {}";
-
-  /**
-   * Create input and output folders to be used when retrieving and populating
-   * resumes.
-   *
-   * @throws IOException If directories are unable to be created.
-   */
-  public void setup() throws IOException {
-    Files.createDirectories(INPUT_FOLDER);
-    Files.createDirectories(OUTPUT_FOLDER);
-  }
 
   /**
    * Read YAML files from the specified input folder and parse them to a list of
    * {@link Resume} objects.
    *
    * @return A list of parsed {@link Resume} objects.
-   * @throws InputFolderMissingException If input folder is missing.
-   * @implSpec May throw unchecked exceptions due to I/O failures.
    */
   @SneakyThrows(IOException.class)
   public List<Resume> readEntries() {
-    if (!Files.isDirectory(INPUT_FOLDER)) {
-      throw new InputFolderMissingException();
-    }
+    Files.createDirectories(INPUT_FOLDER);
 
     try (final var stream = Files.list(INPUT_FOLDER)) {
-      final var files = stream.filter(Files::isRegularFile)
+      return stream.filter(Files::isRegularFile)
           .filter(FileService::isYAMLFile)
-          .toList();
-
-      if (files.isEmpty()) {
-        log.warn("zero YAML data files found, skipping resume generation");
-      }
-
-      return files.stream()
           .map(path -> yamlMapper.readValue(path.toFile(), Resume.class))
           .toList();
     }
@@ -83,10 +54,9 @@ public class FileService {
    * @param format the {@link Format} file extension
    * @return The file path to be populated with resume data
    */
-  public Path getNewFile(final Resume resume, final Format format) {
-    if (!Files.isDirectory(OUTPUT_FOLDER)) {
-      throw new OutputFolderMissingException();
-    }
+  @SneakyThrows(IOException.class)
+  public Path createPath(final Resume resume, final Format format) {
+    Files.createDirectories(OUTPUT_FOLDER);
 
     final var language = resume.language().getCode();
     final var name = resume.name().toLowerCase();
@@ -94,16 +64,6 @@ public class FileService {
     final var filename = FILENAME_FORMAT.formatted(language, name, extension);
 
     return OUTPUT_FOLDER.resolve(filename);
-  }
-
-  /**
-   * Log generic message when resume file is created and populated correctly.
-   *
-   * @param resume the file {@link Path} populated with resume data
-   * @param format the {@link Format} file extension
-   */
-  public void logNewFile(final Path path, final Format format) {
-    log.info(CREATED_LOG_FORMAT, format.name(), path);
   }
 
   private static boolean isYAMLFile(final Path path) {

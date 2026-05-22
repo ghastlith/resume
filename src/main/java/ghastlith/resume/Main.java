@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import ghastlith.resume.file.FileService;
 import ghastlith.resume.renderer.ResumeGenerator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 public class Main implements CommandLineRunner {
 
   @Autowired private ApplicationContext context;
-  @Autowired private FileService fileService;
   @Autowired private ResumeGenerator resumeGenerator;
 
   private static final int BASE_ERROR_CODE = 1;
@@ -29,7 +27,6 @@ public class Main implements CommandLineRunner {
   @Override
   public void run(final String... args) throws Exception {
     try {
-      fileService.setup();
       resumeGenerator.generate();
     } catch (Exception e) {
       log.error("error when generating resume(s)", e);
