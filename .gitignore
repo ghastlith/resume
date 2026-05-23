@@ -8,9 +8,6 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-/output/
-/input/*
-!/input/example.*
 
 # sts
 .apt_generated
@@ -47,3 +44,11 @@ out/
 .ignore/
 .ignore
 *.ignore.*
+
+# application
+/output/
+/input/*
+*.yml
+*.yaml
+*.pdf
+!/input/example.*
