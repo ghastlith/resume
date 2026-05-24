@@ -1,44 +1,49 @@
 package ghastlith.resume.renderer.content;
 
+import static java.util.stream.Collectors.joining;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Optional;
+
 import ghastlith.resume.renderer.data.Experience;
 import ghastlith.resume.renderer.data.Resume;
-import lombok.RequiredArgsConstructor;
+import lombok.Builder;
 
 /**
  * The content string builder to be used when populating a markdown file with
  * resume data.
  */
-@RequiredArgsConstructor
+@Builder
 public class MarkdownContent {
 
+  private final Path path;
   private final Resume resume;
+
   private final StringBuilder builder = new StringBuilder();
 
   private static final String TITLE_FORMAT = "## %s - %s\n";
   private static final String COMPANY_FORMAT = "\n### %s\n\n";
-  private static final String DESCRIPTION_FORMAT = "%s.\n";
+  private static final String DESCRIPTION_FORMAT = "%s.\n\n";
   private static final String TASK_FORMAT = "• %s;\n";
+  private static final String STACK_FORMAT = "\nStack: %s.\n";
+  private static final String STACK_DELIMITER = ", ";
 
   /**
-   * Initialize {@link MarkdownContent} with parsed resume data.
+   * Build content string from current {@link MarkdownContent} appended text data
+   * and write it on the generated markdown file from provided path.
    *
-   * @param resume the parsed resume data
+   * @throws IOException If unable to write string contents to markdown file.
    */
-  public static MarkdownContent with(final Resume resume) {
-    return new MarkdownContent(resume);
-  }
-
-  /**
-   * Build content string from current {@link MarkdownContent} appended text data.
-   *
-   * @return The bundled data to be written on a markdown file.
-   */
-  public String build() {
+  public void writeToFile() throws IOException {
     appendNameTitle();
 
-    resume.sortedExperiences().forEach(this::appendExperience);
+    resume.sortedExperiences()
+        .forEach(this::appendExperience);
 
-    return builder.toString();
+    final var content = builder.toString();
+    Files.writeString(path, content);
   }
 
   private void appendNameTitle() {
@@ -59,6 +64,15 @@ public class MarkdownContent {
         .stream()
         .map(TASK_FORMAT::formatted)
         .forEach(builder::append);
+
+    experience.stack()
+        .stream()
+        .sorted()
+        .collect(joining(STACK_DELIMITER))
+        .transform(Optional::ofNullable)
+        .filter(joined -> !joined.isEmpty())
+        .map(STACK_FORMAT::formatted)
+        .ifPresent(builder::append);
   }
 
 }
