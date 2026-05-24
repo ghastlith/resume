@@ -37,7 +37,7 @@ dependencies {
   implementation("tools.jackson.dataformat:jackson-dataformat-yaml:3.1.3");
 
   // pdf
-  implementation("com.itextpdf:itextpdf:5.5.13.5");
+  implementation("com.github.librepdf:openpdf:3.0.4")
 }
 
 tasks.bootJar {
