@@ -19,9 +19,9 @@ public enum Font {
   TIMES("/static/fonts/times.ttf", "Times New Roman");
 
   private final String path;
-  private final String name;
+  private final String family;
 
-  public FSSupplier<InputStream> getStream() {
+  public FSSupplier<InputStream> getSupplier() {
     return () -> Font.class.getResourceAsStream(path);
   }
 
