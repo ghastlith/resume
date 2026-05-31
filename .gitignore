@@ -43,6 +43,7 @@ out/
 # ignore
 .ignore/
 .ignore
+*.ignore
 *.ignore.*
 
 # application
