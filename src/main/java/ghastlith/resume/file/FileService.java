@@ -23,6 +23,7 @@ public class FileService {
 
   private final YAMLMapper yamlMapper;
 
+  private static final Class<Resume> MAPPED_CLASS = Resume.class;
   private static final Path INPUT_FOLDER = Path.of("input");
   private static final Path OUTPUT_FOLDER = Path.of("output");
   private static final Set<String> YAML_EXTENSIONS = Set.of(".yml", ".yaml");
@@ -41,7 +42,7 @@ public class FileService {
     try (final var stream = Files.list(INPUT_FOLDER)) {
       return stream.filter(Files::isRegularFile)
           .filter(FileService::isYAMLFile)
-          .map(path -> yamlMapper.readValue(path.toFile(), Resume.class))
+          .map(path -> yamlMapper.readValue(path.toFile(), MAPPED_CLASS))
           .toList();
     }
   }
