@@ -6,13 +6,11 @@ import static ghastlith.resume.file.output.Format.MARKDOWN;
 import java.io.IOException;
 import java.util.List;
 
-import org.openpdf.text.DocumentException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
+import org.thymeleaf.TemplateEngine;
 
 import ghastlith.resume.file.FileService;
-import ghastlith.resume.renderer.content.DocumentContent;
-import ghastlith.resume.renderer.content.MarkdownContent;
 import ghastlith.resume.renderer.data.Resume;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
@@ -30,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ResumeGenerator {
 
   private final FileService fileService;
+  private final TemplateEngine templateEngine;
 
   private static final String CREATED_LOG_FORMAT = "[{}] resume file was created at: {}";
   private static final String FAILURE_LOG_FORMAT = "an error happened while trying to save file {}: {}";
@@ -52,25 +51,19 @@ public class ResumeGenerator {
 
   private void generateDocument(final Resume resume) {
     final var path = fileService.createPath(resume, DOCUMENT);
-    final var content = DocumentContent.builder()
-        .path(path)
-        .resume(resume)
-        .build();
+    final var content = new DocumentContent(path, resume, templateEngine);
 
     try {
       content.writeToFile();
       log.info(CREATED_LOG_FORMAT, DOCUMENT.name(), path);
-    } catch (DocumentException | IOException e) {
+    } catch (IOException e) {
       log.error(FAILURE_LOG_FORMAT, path, e);
     }
   }
 
   private void generateMarkdown(final Resume resume) {
     final var path = fileService.createPath(resume, MARKDOWN);
-    final var content = MarkdownContent.builder()
-        .path(path)
-        .resume(resume)
-        .build();
+    final var content = new MarkdownContent(path, resume);
 
     try {
       content.writeToFile();

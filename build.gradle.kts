@@ -21,6 +21,7 @@ dependencies {
   // spring
   implementation("org.springframework.boot:spring-boot-starter");
   implementation("org.springframework.boot:spring-boot-starter-validation");
+  implementation("org.springframework.boot:spring-boot-starter-thymeleaf");
 
   // tests
   testImplementation("org.springframework.boot:spring-boot-starter-test");
@@ -37,7 +38,7 @@ dependencies {
   implementation("tools.jackson.dataformat:jackson-dataformat-yaml:3.1.3");
 
   // pdf
-  implementation("com.github.librepdf:openpdf:3.0.4")
+  implementation("com.openhtmltopdf:openhtmltopdf-pdfbox:1.0.10");
 }
 
 tasks.bootJar {

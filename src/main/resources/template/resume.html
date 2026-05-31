@@ -1,0 +1,16 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="name" th:text="${resume.name}"></div>
+
+    <th:block th:each="experience : ${resume.sortedDegrees}">
+      <tr>
+        <div th:text="${experience.from}"></div>
+      </tr>
+   </th:block>
+
+   <h1 th:text="#{degree.ondoing}">zxc</h1>
+
+  </body>
+</html>
