@@ -1,4 +1,4 @@
-package ghastlith.resume.renderer.content;
+package ghastlith.resume.renderer;
 
 import static java.util.stream.Collectors.joining;
 
@@ -9,13 +9,13 @@ import java.util.Optional;
 
 import ghastlith.resume.renderer.data.Experience;
 import ghastlith.resume.renderer.data.Resume;
-import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 
 /**
  * The content string builder to be used when populating a markdown file with
  * resume data.
  */
-@Builder
+@RequiredArgsConstructor
 public class MarkdownContent {
 
   private final Path path;
