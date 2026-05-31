@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public enum Font {
+public enum DocumentFont {
 
   ARIAL("/static/fonts/arial.ttf", "Arial"),
   TIMES("/static/fonts/times.ttf", "Times New Roman");
@@ -22,7 +22,7 @@ public enum Font {
   private final String family;
 
   public FSSupplier<InputStream> getSupplier() {
-    return () -> Font.class.getResourceAsStream(path);
+    return () -> DocumentFont.class.getResourceAsStream(path);
   }
 
 }

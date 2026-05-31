@@ -66,7 +66,7 @@ public class DocumentContent extends Content {
   }
 
   private void useFonts(final PdfRendererBuilder builder) {
-    final var fonts = Font.values();
+    final var fonts = DocumentFont.values();
 
     for (final var font : fonts) {
       final var supplier = font.getSupplier();
