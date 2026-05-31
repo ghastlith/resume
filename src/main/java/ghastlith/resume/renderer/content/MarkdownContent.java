@@ -1,4 +1,4 @@
-package ghastlith.resume.renderer;
+package ghastlith.resume.renderer.content;
 
 import static java.util.stream.Collectors.joining;
 
@@ -9,17 +9,12 @@ import java.util.Optional;
 
 import ghastlith.resume.renderer.data.Experience;
 import ghastlith.resume.renderer.data.Resume;
-import lombok.RequiredArgsConstructor;
 
 /**
  * The content string builder to be used when populating a markdown file with
  * resume data.
  */
-@RequiredArgsConstructor
-public class MarkdownContent {
-
-  private final Path path;
-  private final Resume resume;
+public class MarkdownContent extends Content {
 
   private final StringBuilder builder = new StringBuilder();
 
@@ -30,6 +25,10 @@ public class MarkdownContent {
   private static final String STACK_FORMAT = "\nStack: %s.\n";
   private static final String STACK_DELIMITER = ", ";
 
+  public MarkdownContent(final Path path, final Resume resume) {
+    super(path, resume);
+  }
+
   /**
    * Build content string from current {@link MarkdownContent} appended text data
    * and write it on the generated markdown file from provided path.
@@ -38,19 +37,26 @@ public class MarkdownContent {
    */
   public void writeToFile() throws IOException {
     appendNameTitle();
-
-    resume.sortedExperiences()
-        .forEach(this::appendExperience);
+    appendExperiences();
 
     final var content = builder.toString();
-    Files.writeString(path, content);
+    Files.writeString(getPath(), content);
   }
 
   private void appendNameTitle() {
+    final var resume = getResume();
     final var name = resume.name().toLowerCase();
     final var language = resume.language().getCode();
     final var heading = TITLE_FORMAT.formatted(name, language);
     builder.append(heading);
+  }
+
+  private void appendExperiences() {
+    final var experiences = getResume().sortedExperiences();
+
+    for (final var experience : experiences) {
+      appendExperience(experience);
+    }
   }
 
   private void appendExperience(final Experience experience) {

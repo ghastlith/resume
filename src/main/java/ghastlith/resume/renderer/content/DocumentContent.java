@@ -1,4 +1,4 @@
-package ghastlith.resume.renderer;
+package ghastlith.resume.renderer.content;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,22 +10,23 @@ import org.thymeleaf.context.Context;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 
 import ghastlith.resume.renderer.data.Resume;
-import lombok.RequiredArgsConstructor;
 
 /**
  * The content string builder to be used when populating a markdown file with
  * resume data.
  */
-@RequiredArgsConstructor
-public class DocumentContent {
+public class DocumentContent extends Content {
 
-  private final Path path;
-  private final Resume resume;
-  private final TemplateEngine templateEngine;
+  private final TemplateEngine engine;
 
   private static final String TEMPLATE_NAME = "template/resume.html";
   private static final String RESUME_CONTEXT = "resume";
   private static final String EMPTY_HTML_URI = null;
+
+  public DocumentContent(final Path path, final Resume resume, final TemplateEngine engine) {
+    super(path, resume);
+    this.engine = engine;
+  }
 
   /**
    * Build document content from current {@link DocumentContent} appended String
@@ -35,7 +36,7 @@ public class DocumentContent {
    * @throws IOException If unable to create output stream for path.
    */
   public void writeToFile() throws IOException {
-    try (final var stream = Files.newOutputStream(path)) {
+    try (final var stream = Files.newOutputStream(getPath())) {
       final var builder = new PdfRendererBuilder();
 
       final var html = renderTemplate();
@@ -47,12 +48,13 @@ public class DocumentContent {
   }
 
   private String renderTemplate() {
+    final var resume = getResume();
     final var locale = resume.language().getLocale();
     final var context = new Context(locale);
 
     context.setVariable(RESUME_CONTEXT, resume);
 
-    return templateEngine.process(TEMPLATE_NAME, context);
+    return engine.process(TEMPLATE_NAME, context);
   }
 
 }
