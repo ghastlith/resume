@@ -60,11 +60,12 @@ public class FileService {
   @SneakyThrows(IOException.class)
   public Path createPath(final Resume resume, final Format format) {
     final var language = resume.language().getCode();
-    final var name = resume.name().toLowerCase().replace(NAME_SPACE, NAME_HYPHEN);
+    final var name = resume.name().toLowerCase();
     final var extension = format.getExtension();
     final var filename = FILENAME_FORMAT.formatted(language, name, extension);
 
-    final var output = OUTPUT_FOLDER.resolve(name);
+    final var folder = name.replace(NAME_SPACE, NAME_HYPHEN);
+    final var output = OUTPUT_FOLDER.resolve(folder);
     Files.createDirectories(output);
 
     return output.resolve(filename);
