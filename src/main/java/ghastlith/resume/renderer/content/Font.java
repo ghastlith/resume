@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 public enum Font {
 
   ARIAL("/static/fonts/arial.ttf", "Arial"),
-  TIMES_NEW_ROMAN("/static/fonts/times.ttf", "Times New Roman");
+  TIMES("/static/fonts/times.ttf", "Times New Roman");
 
   private final String path;
   private final String name;
