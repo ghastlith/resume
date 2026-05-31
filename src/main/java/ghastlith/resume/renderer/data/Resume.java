@@ -50,7 +50,7 @@ public record Resume(
   }
 
   public List<Degree> sortedDegrees() {
-    final var comparator = nullsLast(comparing(Degree::to))
+    final var comparator = comparing(Degree::to, nullsLast(naturalOrder()))
         .reversed()
         .thenComparing(Degree::from, reverseOrder());
 
