@@ -1,5 +1,7 @@
 package ghastlith.resume.renderer.content;
 
+import static java.util.logging.Level.SEVERE;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,6 +10,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
+import com.openhtmltopdf.util.XRLog;
 
 import ghastlith.resume.renderer.data.Resume;
 
@@ -16,6 +19,10 @@ import ghastlith.resume.renderer.data.Resume;
  * resume data.
  */
 public class DocumentContent extends Content {
+
+  static {
+    XRLog.listRegisteredLoggers().forEach(logger -> XRLog.setLevel(logger, SEVERE));
+  }
 
   private final TemplateEngine engine;
 
