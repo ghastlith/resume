@@ -1,5 +1,6 @@
 package ghastlith.resume.renderer.content;
 
+import static java.util.Arrays.stream;
 import static java.util.logging.Level.SEVERE;
 
 import java.io.IOException;
@@ -44,9 +45,11 @@ public class DocumentContent extends Content {
    */
   public void writeToFile() throws IOException {
     try (final var stream = Files.newOutputStream(getPath())) {
+      final var html = renderTemplate();
       final var builder = new PdfRendererBuilder();
 
-      final var html = renderTemplate();
+      stream(Font.values())
+          .forEach(font -> builder.useFont(font.getStream(), font.getName()));
 
       builder.withHtmlContent(html, EMPTY_HTML_URI);
       builder.toStream(stream);
