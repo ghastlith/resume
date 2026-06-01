@@ -26,7 +26,7 @@ public class DocumentContent extends Content {
 
   private final TemplateEngine engine;
 
-  private static final String TEMPLATE_NAME = "template/resume.html";
+  private static final String TEMPLATE_NAME = "templates/resume.html";
   private static final String RESUME_CONTEXT = "resume";
   private static final String EMPTY_HTML_URI = null;
 
