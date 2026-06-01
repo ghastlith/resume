@@ -58,8 +58,8 @@ public class DocumentContent extends Content {
   private String renderTemplate() {
     final var resume = getResume();
     final var locale = resume.language().getLocale();
-    final var context = new Context(locale);
 
+    final var context = new Context(locale);
     context.setVariable(RESUME_CONTEXT, resume);
 
     return engine.process(TEMPLATE_NAME, context);
