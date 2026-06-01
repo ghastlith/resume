@@ -3,6 +3,7 @@ package ghastlith.resume.renderer.data;
 import static com.fasterxml.jackson.annotation.Nulls.AS_EMPTY;
 import static java.time.format.DateTimeFormatter.ofPattern;
 import static java.util.Optional.ofNullable;
+import static java.util.stream.Collectors.joining;
 
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -33,9 +34,10 @@ public record Experience(
 
   private static final String DATE_PATTERN = "MM/yyyy";
   private static final DateTimeFormatter DATE_FORMATTER = ofPattern(DATE_PATTERN);
+  private static final String MESSAGE_FORMAT = "%s%s";
   private static final String PERIOD = ".";
   private static final String SEMICOLON = ";";
-  private static final String MESSAGE_FORMAT = "%s%s";
+  private static final String STACK_DELIMITER = ", ";
 
   public String formattedFrom() {
     return DATE_FORMATTER.format(from());
@@ -64,6 +66,12 @@ public record Experience(
         .stream()
         .map(this::formatTask)
         .toList();
+  }
+
+  public String collectedStack() {
+    return stack().stream()
+        .sorted()
+        .collect(joining(STACK_DELIMITER));
   }
 
   private String formatTask(final String task) {
