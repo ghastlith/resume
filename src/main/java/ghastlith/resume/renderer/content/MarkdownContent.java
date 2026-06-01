@@ -15,11 +15,10 @@ public class MarkdownContent extends Content {
 
   private final StringBuilder builder = new StringBuilder();
 
-  private static final String NL = System.lineSeparator();
-  private static final String TITLE_FORMAT = "## %s - %s" + NL;
-  private static final String COMPANY_FORMAT = NL + "### %s" + NL + NL;
-  private static final String DESCRIPTION_FORMAT = "%s" + NL + NL;
-  private static final String TASK_FORMAT = "• %s" + NL;
+  private static final String TITLE_FORMAT = "## %s - %s\n";
+  private static final String COMPANY_FORMAT = "\n### %s\n\n";
+  private static final String DESCRIPTION_FORMAT = "%s\n\n";
+  private static final String TASK_FORMAT = "• %s\n";
 
   public MarkdownContent(final Path path, final Resume resume) {
     super(path, resume);
