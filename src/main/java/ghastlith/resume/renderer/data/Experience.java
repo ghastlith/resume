@@ -2,6 +2,7 @@ package ghastlith.resume.renderer.data;
 
 import static com.fasterxml.jackson.annotation.Nulls.AS_EMPTY;
 import static java.time.format.DateTimeFormatter.ofPattern;
+import static java.util.Optional.ofNullable;
 
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -31,24 +32,31 @@ public record Experience(
 ) {
 
   private static final String DATE_PATTERN = "MM/yyyy";
-  private static final DateTimeFormatter FORMATTER = ofPattern(DATE_PATTERN);
+  private static final DateTimeFormatter DATE_FORMATTER = ofPattern(DATE_PATTERN);
   private static final String PERIOD = ".";
   private static final String SEMICOLON = ";";
   private static final String MESSAGE_FORMAT = "%s%s";
 
   public String formattedFrom() {
-    return FORMATTER.format(from());
+    return DATE_FORMATTER.format(from());
   }
 
+  @Nullable
   public String formattedTo() {
-    final var date = to();
-    return date == null ? null : FORMATTER.format(date);
+    return ofNullable(to())
+        .map(DATE_FORMATTER::format)
+        .orElse(null);
   }
 
   public String formattedDescription() {
     final var message = description();
     final var isFormatted = message.isBlank() || message.endsWith(PERIOD);
-    return isFormatted ? message : MESSAGE_FORMAT.formatted(message, PERIOD);
+
+    if (isFormatted) {
+      return message;
+    }
+
+    return MESSAGE_FORMAT.formatted(message, PERIOD);
   }
 
   public List<String> formattedTasks() {
@@ -59,8 +67,11 @@ public record Experience(
   }
 
   private String formatTask(final String task) {
-    final var isFormatted = task.endsWith(SEMICOLON);
-    return isFormatted ? task : MESSAGE_FORMAT.formatted(task, SEMICOLON);
+    if (task.endsWith(SEMICOLON)) {
+      return task;
+    }
+
+    return MESSAGE_FORMAT.formatted(task, SEMICOLON);
   }
 
 }
