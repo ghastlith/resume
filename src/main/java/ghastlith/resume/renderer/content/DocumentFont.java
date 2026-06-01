@@ -19,10 +19,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum DocumentFont {
 
-  GOOGLE("/static/fonts/google-sans.ttf", "Google Sans", 400, NORMAL, true),
-  GOOGLE_BOLD("/static/fonts/google-sans-bold.ttf", "Google Sans", 600, NORMAL, true),
-  TIMES("/static/fonts/times-new-roman.ttf", "Times New Roman", 400, NORMAL, true),
-  TIMES_BOLD("/static/fonts/times-new-roman-bold.ttf", "Times New Roman", 600, NORMAL, true);
+  GOOGLE("/fonts/google-sans.ttf", "Google Sans", 400, NORMAL, true),
+  GOOGLE_BOLD("/fonts/google-sans-bold.ttf", "Google Sans", 600, NORMAL, true),
+  TIMES("/fonts/times-new-roman.ttf", "Times New Roman", 400, NORMAL, true),
+  TIMES_BOLD("/fonts/times-new-roman-bold.ttf", "Times New Roman", 600, NORMAL, true);
 
   private final String path;
   private final String family;
