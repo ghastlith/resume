@@ -28,8 +28,6 @@ public class FileService {
   private static final Path OUTPUT_FOLDER = Path.of("output");
   private static final Set<String> YAML_EXTENSIONS = Set.of(".yml", ".yaml");
   private static final String FILENAME_FORMAT = "(cv-%s) %s.%s";
-  private static final String NAME_SPACE = " ";
-  private static final String NAME_HYPHEN = "-";
 
   /**
    * Read YAML files from the specified input folder and parse them to a list of
@@ -59,16 +57,14 @@ public class FileService {
    */
   @SneakyThrows(IOException.class)
   public Path createPath(final Resume resume, final Format format) {
+    Files.createDirectories(OUTPUT_FOLDER);
+
     final var language = resume.language().getCode();
     final var name = resume.name().toLowerCase();
     final var extension = format.getExtension();
     final var filename = FILENAME_FORMAT.formatted(language, name, extension);
 
-    final var folder = name.replace(NAME_SPACE, NAME_HYPHEN);
-    final var output = OUTPUT_FOLDER.resolve(folder);
-    Files.createDirectories(output);
-
-    return output.resolve(filename);
+    return OUTPUT_FOLDER.resolve(filename);
   }
 
   private static boolean isYAMLFile(final Path path) {
