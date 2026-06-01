@@ -1,0 +1,134 @@
+<html th:lang="${#locale.language}">
+  <head>
+    <style>
+      @page {
+        size: A4 portrait;
+        margin: 0.6cm 1cm;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      /* font */
+      .arial-11 { font-family: "Arial"; font-size: 11pt; }
+      .arial-14 { font-family: "Arial"; font-size: 14pt; }
+      .times-11 { font-family: "Times New Roman"; font-size: 11pt; }
+      .times-12 { font-family: "Times New Roman"; font-size: 12pt; }
+
+      /* position */
+      section  { clear: both; }
+      .left    { text-align: left; float: left; }
+      .right   { text-align: right; }
+      .center  { text-align: center; }
+      .justify { text-align: justify; }
+
+      /* typography */
+      .normal { font-weight: 400; }
+      .bold   { font-weight: 700; }
+      .uppercase  { text-transform: uppercase; }
+      .capitalize { text-transform: capitalize; }
+
+      .hyperlink {
+        text-decoration: underline;
+        color: #1155cc;
+      }
+
+      /* list */
+    </style>
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1 class="arial-14 bold uppercase left" th:text="${resume.name}"></h1>
+        <h1 class="arial-14 bold uppercase right" th:text="${resume.role}"></h1>
+      </section>
+
+      <section>
+        <h3 class="times-12 normal hyperlink left"><a th:href="${resume.linkedin}">LinkedIn</a></h3>
+        <h3 class="times-12 normal hyperlink right"><a th:href="${'mailto:' + resume.email}" th:text="${resume.email}"></a></h3>
+      </section>
+
+      <section>
+        <h3 class="times-12 normal hyperlink left"><a th:href="${resume.github}">GitHub</a></h3>
+        <h3 class="times-12 normal right" th:text="${resume.phone}"></h3>
+      </section>
+    </header>
+
+    <br />
+
+    <th:block th:if="${not #lists.isEmpty(resume.experiences)}">
+      <h2 class="arial-11 bold uppercase center" th:text="#{section.experience}"></h2>
+
+      <section th:each="experience : ${resume.sortedExperiences}">
+        <header>
+          <th:block th:fragment="company-name(company)">
+            <a th:if="${company != null && company.website != null}" class="hyperlink" th:href="${company.website}" th:text="${company.name}"></a>
+            <span th:if="${company != null && company.website == null}" th:text="${company.name}"></span>
+          </th:block>
+
+          <h3 class="times-12 normal left">
+            <th:block th:replace="~{:: company-name(${experience.company})}"></th:block>
+            <span th:if="${experience.client != null}"> - </span>
+            <th:block th:replace="~{:: company-name(${experience.client})}"></th:block>
+            <span> | </span>
+            <span class="bold" th:text="${experience.role}"></span>
+          </h3>
+
+          <h3 class="times-12 bold right">
+            <th:block th:text="${experience.formattedFrom}"></th:block>
+            <th:block> - </th:block>
+            <span class="capitalize" th:text="${experience.formattedTo ?: #messages.msg('role.current')}"></span>
+          </h3>
+        </header>
+
+        <p class="times-11 justify" th:text="${experience.formattedDescription}"></p>
+
+        <ul>
+          <li class="times-11 justify" th:each="task : ${experience.formattedTasks}" th:text="${task}"></li>
+        </ul>
+
+        <p class="times-11 justify" th:if="${not #strings.isEmpty(experience.collectedStack)}">
+          <span class="bold">Stack: </span>
+          <th:block th:text="${experience.collectedStack + '.'}"></th:block>
+        </p>
+
+        <br />
+      </section>
+    </th:block>
+
+    <th:block th:if="${not #lists.isEmpty(resume.degrees)}">
+      <h2 class="arial-11 bold uppercase center" th:text="#{section.education}"></h2>
+
+      <section th:each="degree : ${resume.sortedDegrees}">
+        <h3  class="arial-11 bold left">
+          <th:block th:text="${degree.degree}"></th:block>
+          <span class="normal" th:text="${'(' + degree.institution + ')'}"></span>
+        </h3>
+
+        <h3 class="arial-11 bold right">
+          <th:block th:text="${degree.from}"></th:block>
+          <th:block> - </th:block>
+          <span class="capitalize" th:text="${degree.to ?: #messages.msg('degree.ongoing')}"></span>
+        </h3>
+      </section>
+
+      <br />
+    <th:block>
+
+    <th:block th:if="${not #lists.isEmpty(resume.certifications)}">
+      <h2 class="arial-11 bold uppercase center" th:text="#{section.certification}"></h2>
+
+      <section th:each="certification : ${resume.sortedCertifications}">
+        <h3  class="arial-11 bold left">
+          <th:block th:text="${certification.certification}"></th:block>
+          <span class="normal" th:text="${'(' + certification.institution + ')'}"></span>
+        </h3>
+
+        <h3 class="arial-11 bold right" th:text="${certification.year}"></h3>
+      </section>
+    <th:block>
+  </body>
+</html>
