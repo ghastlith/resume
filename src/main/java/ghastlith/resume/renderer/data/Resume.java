@@ -23,7 +23,7 @@ import jakarta.validation.constraints.NotNull;
  * data.
  */
 public record Resume(
-    Language language,
+    @NotNull Language language,
     @NotBlank String name,
     @NotBlank String role,
     @NotNull URI linkedin,

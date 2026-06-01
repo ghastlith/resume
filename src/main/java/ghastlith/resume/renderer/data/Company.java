@@ -2,6 +2,7 @@ package ghastlith.resume.renderer.data;
 
 import java.net.URI;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 
 /**
@@ -10,5 +11,5 @@ import jakarta.validation.constraints.NotBlank;
  */
 public record Company(
     @NotBlank String name,
-    URI website
+    @Nullable URI website
 ) {}

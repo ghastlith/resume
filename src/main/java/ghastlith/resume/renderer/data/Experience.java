@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -17,10 +18,10 @@ import jakarta.validation.constraints.NotNull;
  */
 public record Experience(
     @NotNull Company company,
-    Company client,
+    @Nullable Company client,
     @NotBlank String role,
     @NotNull YearMonth from,
-    YearMonth to,
+    @Nullable YearMonth to,
     @JsonSetter(nulls = AS_EMPTY)
     String description,
     @JsonSetter(nulls = AS_EMPTY)
