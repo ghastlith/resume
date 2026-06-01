@@ -1,33 +1,39 @@
 <html th:lang="${#locale.language}">
   <head>
     <style>
+      /* page */
       @page {
         size: A4 portrait;
-        margin: 0.6cm 1cm;
+        margin: 0.7cm 1cm;
       }
 
+      /* reset */
       * {
         margin: 0;
         padding: 0;
         border: 0;
       }
 
+      section, .justify {
+        clear: both;
+      }
+
       /* font */
-      .arial-11 { font-family: "Arial"; font-size: 11pt; }
-      .arial-14 { font-family: "Arial"; font-size: 14pt; }
+      .google-11 { font-family: "Google Sans"; font-size: 11pt; line-height: 1.2; }
+      .google-12 { font-family: "Google Sans"; font-size: 12pt; line-height: 1.2; }
+      .google-14 { font-family: "Google Sans"; font-size: 14pt; line-height: 1.2; }
       .times-11 { font-family: "Times New Roman"; font-size: 11pt; }
       .times-12 { font-family: "Times New Roman"; font-size: 12pt; }
 
       /* position */
-      section  { clear: both; }
       .left    { text-align: left; float: left; }
       .right   { text-align: right; }
       .center  { text-align: center; }
       .justify { text-align: justify; }
 
       /* typography */
-      .normal { font-weight: 400; }
-      .bold   { font-weight: 700; }
+      .normal   { font-weight: 400; }
+      .semibold { font-weight: 600; }
       .uppercase  { text-transform: uppercase; }
       .capitalize { text-transform: capitalize; }
 
@@ -37,13 +43,28 @@
       }
 
       /* list */
+      ul {
+        padding-left: 0.3cm;
+        list-style: none;
+      }
+
+      li {
+        position: relative;
+        padding-left: 0.4cm;
+      }
+
+      li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+      }
     </style>
   </head>
   <body>
     <header>
       <section>
-        <h1 class="arial-14 bold uppercase left" th:text="${resume.name}"></h1>
-        <h1 class="arial-14 bold uppercase right" th:text="${resume.role}"></h1>
+        <h1 class="google-14 semibold uppercase left" th:text="${resume.name}"></h1>
+        <h1 class="google-14 semibold uppercase right" th:text="${resume.role}"></h1>
       </section>
 
       <section>
@@ -60,7 +81,7 @@
     <br />
 
     <th:block th:if="${not #lists.isEmpty(resume.experiences)}">
-      <h2 class="arial-11 bold uppercase center" th:text="#{section.experience}"></h2>
+      <h2 class="google-12 semibold uppercase center" th:text="#{section.experience}"></h2>
 
       <section th:each="experience : ${resume.sortedExperiences}">
         <header>
@@ -74,10 +95,10 @@
             <span th:if="${experience.client != null}"> - </span>
             <th:block th:replace="~{:: company-name(${experience.client})}"></th:block>
             <span> | </span>
-            <span class="bold" th:text="${experience.role}"></span>
+            <span class="semibold" th:text="${experience.role}"></span>
           </h3>
 
-          <h3 class="times-12 bold right">
+          <h3 class="times-12 semibold right">
             <th:block th:text="${experience.formattedFrom}"></th:block>
             <th:block> - </th:block>
             <span class="capitalize" th:text="${experience.formattedTo ?: #messages.msg('role.current')}"></span>
@@ -91,7 +112,7 @@
         </ul>
 
         <p class="times-11 justify" th:if="${not #strings.isEmpty(experience.collectedStack)}">
-          <span class="bold">Stack: </span>
+          <span class="semibold">Stack: </span>
           <th:block th:text="${experience.collectedStack + '.'}"></th:block>
         </p>
 
@@ -100,15 +121,15 @@
     </th:block>
 
     <th:block th:if="${not #lists.isEmpty(resume.degrees)}">
-      <h2 class="arial-11 bold uppercase center" th:text="#{section.education}"></h2>
+      <h2 class="google-12 semibold uppercase center" th:text="#{section.education}"></h2>
 
       <section th:each="degree : ${resume.sortedDegrees}">
-        <h3  class="arial-11 bold left">
+        <h3  class="google-11 semibold left">
           <th:block th:text="${degree.degree}"></th:block>
           <span class="normal" th:text="${'(' + degree.institution + ')'}"></span>
         </h3>
 
-        <h3 class="arial-11 bold right">
+        <h3 class="google-11 semibold right">
           <th:block th:text="${degree.from}"></th:block>
           <th:block> - </th:block>
           <span class="capitalize" th:text="${degree.to ?: #messages.msg('degree.ongoing')}"></span>
@@ -116,19 +137,19 @@
       </section>
 
       <br />
-    <th:block>
+    </th:block>
 
     <th:block th:if="${not #lists.isEmpty(resume.certifications)}">
-      <h2 class="arial-11 bold uppercase center" th:text="#{section.certification}"></h2>
+      <h2 class="google-12 semibold uppercase center" th:text="#{section.certification}"></h2>
 
       <section th:each="certification : ${resume.sortedCertifications}">
-        <h3  class="arial-11 bold left">
+        <h3  class="google-11 semibold left">
           <th:block th:text="${certification.certification}"></th:block>
           <span class="normal" th:text="${'(' + certification.institution + ')'}"></span>
         </h3>
 
-        <h3 class="arial-11 bold right" th:text="${certification.year}"></h3>
+        <h3 class="google-11 semibold right" th:text="${certification.year}"></h3>
       </section>
-    <th:block>
+    </th:block>
   </body>
 </html>
