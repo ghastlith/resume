@@ -69,10 +69,7 @@ public class DocumentContent extends Content {
     final var fonts = DocumentFont.values();
 
     for (final var font : fonts) {
-      final var supplier = font.getSupplier();
-      final var family = font.getFamily();
-
-      builder.useFont(supplier, family);
+      font.registerOn(builder);
     }
   }
 
