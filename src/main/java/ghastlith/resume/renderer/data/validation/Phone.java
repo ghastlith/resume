@@ -12,7 +12,7 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 /**
- * Custom annotation to help validate phone number.
+ * Custom annotation used to validate phone number.
  */
 @Documented
 @Target({ FIELD, RECORD_COMPONENT })

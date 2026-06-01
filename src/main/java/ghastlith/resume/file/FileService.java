@@ -47,7 +47,7 @@ public class FileService {
   }
 
   /**
-   * Create a new {@link Path} at the specified output filder with a name
+   * Create a new {@link Path} at the specified output folder with a name
    * generated from parsed input YAML data and specified format.
    *
    * @param resume the {@link Resume} data parsed from YAML file

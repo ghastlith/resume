@@ -6,8 +6,8 @@ import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 
 /**
- * Company data from the experience entry used in resume generation, mapped from
- * YAML input data.
+ * A company regarding corporations presend on an experience entry used in
+ * resume generation, mapped from YAML input data.
  */
 public record Company(
     @NotBlank String name,

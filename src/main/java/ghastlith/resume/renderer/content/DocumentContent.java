@@ -15,7 +15,7 @@ import com.openhtmltopdf.util.XRLog;
 import ghastlith.resume.renderer.data.Resume;
 
 /**
- * The content string builder to be used when populating a markdown file with
+ * The Document file content builder used when generating pdf files from parsed
  * resume data.
  */
 public class DocumentContent extends Content {

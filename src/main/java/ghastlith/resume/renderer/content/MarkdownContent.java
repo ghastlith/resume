@@ -8,8 +8,8 @@ import ghastlith.resume.renderer.data.Experience;
 import ghastlith.resume.renderer.data.Resume;
 
 /**
- * The content string builder to be used when populating a markdown file with
- * resume data.
+ * The Markdown file content builder used when generating markdown files from
+ * parsed resume data.
  */
 public class MarkdownContent extends Content {
 
@@ -26,7 +26,7 @@ public class MarkdownContent extends Content {
   }
 
   /**
-   * Build content string from current {@link MarkdownContent} appended text data
+   * Build markdown content string from current appended builder text parsed data
    * and write it on the generated markdown file from provided path.
    *
    * @throws IOException If unable to write string contents to markdown file.
