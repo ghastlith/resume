@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
- * The language in which resume sections and specific keywords will be rendered.
+ * The language of the resume and in which specific keywords will be rendered.
  */
 @Getter
 @RequiredArgsConstructor

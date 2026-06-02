@@ -12,8 +12,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
- * Set of fonts and their respective designed data to be used when rendering
- * Resume Documents.
+ * Set of fonts and their respective data to be used when rendering Resume
+ * Documents.
  */
 @Getter
 @RequiredArgsConstructor

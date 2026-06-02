@@ -36,9 +36,9 @@ public class DocumentContent extends Content {
   }
 
   /**
-   * Build document content from current {@link DocumentContent} appended String
-   * html templated data and populate it on the generated pdf file from provided
-   * path.
+   * Build document content from thymeleaf templated HTML String based on current
+   * {@link DocumentContent} resume data and populate it on the generated pdf file
+   * from provided path.
    *
    * @throws IOException If unable to create output stream for path.
    */
