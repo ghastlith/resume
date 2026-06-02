@@ -124,7 +124,7 @@
       <h2 class="google-12 semibold uppercase center" th:text="#{section.education}"></h2>
 
       <section th:each="degree : ${resume.sortedDegrees}">
-        <h3  class="google-11 semibold left">
+        <h3 class="google-11 semibold left">
           <th:block th:text="${degree.degree}"></th:block>
           <span class="normal" th:text="${'(' + degree.institution + ')'}"></span>
         </h3>
@@ -143,7 +143,7 @@
       <h2 class="google-12 semibold uppercase center" th:text="#{section.certification}"></h2>
 
       <section th:each="certification : ${resume.sortedCertifications}">
-        <h3  class="google-11 semibold left">
+        <h3 class="google-11 semibold left">
           <th:block th:text="${certification.certification}"></th:block>
           <span class="normal" th:text="${'(' + certification.institution + ')'}"></span>
         </h3>
