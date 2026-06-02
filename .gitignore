@@ -47,9 +47,6 @@ out/
 *.ignore.*
 
 # application
-/output/
 /input/*
-*.yml
-*.yaml
-*.pdf
-!/input/example.*
+!/input/example.yml
+/output/
