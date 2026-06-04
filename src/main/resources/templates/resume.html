@@ -9,13 +9,12 @@
 
       /* reset */
       * {
+        position: relative;
         margin: 0;
         padding: 0;
         border: 0;
-      }
-
-      section, .justify {
-        clear: both;
+        border-collapse: collapse;
+        border-spacing: 0;
       }
 
       /* font */
@@ -26,7 +25,7 @@
       .times-12 { font-family: "Times New Roman"; font-size: 12pt; }
 
       /* position */
-      .left    { text-align: left; float: left; }
+      .left    { text-align: left; }
       .right   { text-align: right; }
       .center  { text-align: center; }
       .justify { text-align: justify; }
@@ -38,8 +37,13 @@
       .capitalize { text-transform: capitalize; }
 
       .hyperlink {
-        text-decoration: underline;
-        color: #1155cc;
+        text-decoration: none;
+        color: #2e57ce;
+      }
+
+      /* table */
+      table {
+        width: 100%;
       }
 
       /* list */
@@ -49,7 +53,6 @@
       }
 
       li {
-        position: relative;
         padding-left: 0.4cm;
       }
 
