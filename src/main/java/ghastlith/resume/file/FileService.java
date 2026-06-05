@@ -26,6 +26,7 @@ public class FileService {
   private static final Path INPUT_FOLDER = Path.of("input");
   private static final Path OUTPUT_FOLDER = Path.of("output");
   private static final Set<String> YAML_EXTENSIONS = Set.of(".yml", ".yaml");
+  private static final String EXAMPLE_FILENAME = "example.yml";
   private static final String FILENAME_FORMAT = "(cv-%s) %s.%s";
 
   /**
@@ -41,6 +42,7 @@ public class FileService {
     try (final var stream = Files.list(INPUT_FOLDER)) {
       return stream.filter(Files::isRegularFile)
           .filter(FileService::isYAMLFile)
+          .filter(FileService::isNotExampleFile)
           .map(path -> yamlMapper.readValue(path.toFile(), Resume.class))
           .toList();
     }
@@ -73,6 +75,14 @@ public class FileService {
 
     return YAML_EXTENSIONS.stream()
         .anyMatch(name::endsWith);
+  }
+
+  private static boolean isNotExampleFile(final Path path) {
+    final var name = path.getFileName()
+        .toString()
+        .toLowerCase();
+
+    return !EXAMPLE_FILENAME.equals(name);
   }
 
 }
