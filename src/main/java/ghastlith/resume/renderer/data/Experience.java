@@ -68,7 +68,7 @@ public record Experience(
         .toList();
   }
 
-  public String formattedStack() {
+  public String collectedStack() {
     return stack().stream()
         .sorted()
         .collect(joining(STACK_DELIMITER));
