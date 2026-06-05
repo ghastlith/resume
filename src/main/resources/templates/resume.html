@@ -23,6 +23,7 @@
       .google-14 { font-family: "Google Sans"; font-size: 14pt; line-height: 1.2; }
       .times-11 { font-family: "Times New Roman"; font-size: 11pt; }
       .times-12 { font-family: "Times New Roman"; font-size: 12pt; }
+      .source-12 { font-family: "Source Sans"; font-size: 12pt; }
 
       /* position */
       .left    { text-align: left; }
@@ -91,7 +92,7 @@
 
       <section th:each="experience : ${resume.sortedExperiences}">
         <table>
-          <td class="times-12 normal left">
+          <td class="source-12 normal left">
             <th:block th:replace="~{:: company-name(${experience.company})}"></th:block>
             <span th:if="${experience.client != null}"> - </span>
             <th:block th:replace="~{:: company-name(${experience.client})}"></th:block>
@@ -99,7 +100,7 @@
             <span class="semibold" th:text="${experience.role}"></span>
           </td>
 
-          <td class="times-12 semibold right">
+          <td class="source-12 semibold right">
             <th:block th:text="${experience.formattedFrom}"></th:block>
             <th:block> - </th:block>
             <span class="capitalize" th:text="${experience.formattedTo ?: #messages.msg('role.current')}"></span>
@@ -123,12 +124,12 @@
 
       <table>
         <tr th:each="degree : ${resume.sortedDegrees}">
-          <td class="google-11 semibold left">
+          <td class="source-12 semibold left">
             <th:block th:text="${degree.degree}"></th:block>
             <span class="normal" th:text="${'(' + degree.institution + ')'}"></span>
           </td>
 
-          <td class="google-11 semibold right">
+          <td class="source-12 semibold right">
             <th:block th:text="${degree.from}"></th:block>
             <th:block> - </th:block>
             <span class="capitalize" th:text="${degree.to ?: #messages.msg('degree.ongoing')}"></span>
@@ -144,12 +145,12 @@
 
       <table>
         <tr th:each="certification : ${resume.sortedCertifications}">
-          <td class="google-11 semibold left">
+          <td class="source-12 semibold left">
             <th:block th:text="${certification.certification}"></th:block>
             <span class="normal" th:text="${'(' + certification.institution + ')'}"></span>
           </td>
 
-          <td class="google-11 semibold right" th:text="${certification.year}"></td>
+          <td class="source-12 semibold right" th:text="${certification.year}"></td>
         </tr>
       </table>
     </th:block>
