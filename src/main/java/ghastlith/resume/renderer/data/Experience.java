@@ -35,6 +35,7 @@ public record Experience(
   private static final String DATE_PATTERN = "MM/yyyy";
   private static final DateTimeFormatter DATE_FORMATTER = ofPattern(DATE_PATTERN);
   private static final String MESSAGE_FORMAT = "%s%s";
+  private static final String STACK_FORMAT = "Stack: %s.";
   private static final String PERIOD = ".";
   private static final String SEMICOLON = ";";
   private static final String STACK_DELIMITER = ", ";
@@ -68,10 +69,11 @@ public record Experience(
         .toList();
   }
 
-  public String collectedStack() {
+  public String formattedStack() {
     return stack().stream()
         .sorted()
-        .collect(joining(STACK_DELIMITER));
+        .collect(joining(STACK_DELIMITER))
+        .transform(STACK_FORMAT::formatted);
   }
 
   private String formatTask(final String task) {
