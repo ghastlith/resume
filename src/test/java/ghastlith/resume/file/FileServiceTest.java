@@ -23,7 +23,7 @@ import tools.jackson.dataformat.yaml.YAMLMapper;
 @ExtendWith(MockitoExtension.class)
 public class FileServiceTest {
 
-  @Mock private YAMLMapper yamlMapper;
+  @Mock private YAMLMapper mockYamlMapper;
   @TempDir Path directory;
 
   private Path inputFolder;
@@ -34,7 +34,7 @@ public class FileServiceTest {
   void setUp() {
     inputFolder = directory.resolve("input");
     outputFolder = directory.resolve("output");
-    fileService = new FileService(yamlMapper, inputFolder, outputFolder);
+    fileService = new FileService(mockYamlMapper, inputFolder, outputFolder);
   }
 
   @Test
@@ -59,7 +59,7 @@ public class FileServiceTest {
 
     // then
     assertThat(entries).isEmpty();
-    verifyNoInteractions(yamlMapper);
+    verifyNoInteractions(mockYamlMapper);
   }
 
   @Test
