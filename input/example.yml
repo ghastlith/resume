@@ -1,0 +1,109 @@
+language: en-us
+name: john constantine
+role: hellblazer
+linkedin: https://en.wikipedia.org/wiki/John_Constantine
+github: https://hellblazer.com
+email: john.constantine@hellblazer.com
+phone: +1 (404) 248-7182
+
+experiences:
+  - company:
+      name: Justice League Dark
+      website:
+    role: Reluctant Leader & Primary Occult Strategist
+    from: 2018-10
+    to:
+    tasks:
+      - Coordinated field operations for high-risk mystical threats beyond the paygrade of the standard Justice League
+      - Mediated interpersonal conflicts between emotional ghosts, ancient swamp monsters, and high-maintenance stage magicians
+      - Developed defensive strategies against universe-ending magical anomalies while maintaining a steady nicotine intake
+      - Utilized highly unorthodox negotiation tactics to con, outsmart, or strike temporary bargains with high-ranking lords of Hell and cosmic entities
+      - Acted as the primary magical consultant and cleanup crew for Batman and the core Justice League when conventional physics and technology failed to solve a crisis
+    skills:
+      - Leadership (Reluctant)
+      - Interdimensional Diplomacy
+      - Magical Threat Assessment
+      - Crisis Management
+      - Necromancy
+      - Mediumship
+      - Time Travel
+      - Sigils
+      - Magical Circles
+
+  - company:
+      name: Newcastle Crew
+      website:
+    role: Exorcist
+    from: 2002-12
+    to: 2014-04
+    description: I was good, the best in the world even. But I got cocky and now a little girl is damned to Hell. That's on me mate, but you can be damn sure I'm going to do everything in my power to save her
+    tasks:
+      - Investigated supernatural disturbances and localized demonic infestations across the UK underground scene
+      - Conducted a high-stakes, un-sanctioned summoning ritual at the Casanova Club to counteract a minor demonic entity
+      - Learned the devastating, real-world consequences of hubris and magical miscalculation the hard way
+      - Assembled and managed a tight-knit network of amateur occultists, tech experts, and psychics to track supernatural anomalies
+    skills:
+      - Demonology
+      - Illusions
+      - Divination
+      - Demon Summoning
+      - Occult Investigation
+      - Eldritch Lore
+
+  - company:
+      name: Ravenscar Psychiatric Ward
+      website:
+    role: Patient
+    from: 2014-05
+    to: 2014-10
+    description: How many blokes do you know who've checked themselves into the nuthouse? The electro-shock therapy did wonders for me. Great release of pain if you ever need it
+    tasks:
+      - Successfully checked into a high-security psychiatric facility to escape crushing guilt and demonic surveillance
+      - Endured intensive, involuntary electro-shock therapy sessions to dull acute psychological trauma
+      - Socially engineered a successful self-discharge (escape) through smooth talking and witty bulding mapping
+    skills:
+      - Mental Fortitude
+      - Pain Tolerance
+      - Institutional Navigation
+      - Asylum Escape Artistry
+
+  - company:
+      name: Mucous Membrane
+      website:
+    role: Lead Singer
+    from: 2002-04
+    to: 2006-07
+    description: I was in a punk band with my mates, Gary, Les and Beano. We gave the Sex Pistol lifestyle a try. You might have seen us at the Cassanova Club in Newcastle, or maybe you've heard our song "Venus of the Hardsell." And if you don't like it, piss off
+    tasks:
+      - Performed lead vocals and fronted a highly disruptive, underground punk rock outfit across gritty UK venues
+      - Wrote and recorded the underground cult hit single "Venus of the Hardsell"
+      - Mastered the fine art of crowd control, pub brawling, and dodging empty beer bottles thrown at the stage
+      - Aggressively managed band finances through under-the-table bartering, minor street grifts, and dodging venue owners looking for property damages
+    skills:
+      - Lead Vocals
+      - Punk Rock Attitude
+      - Songwriting
+      - Audience Manipulation
+      - Stage Presence
+
+degrees:
+  - institution: John Zatara Mentorship
+    degree: Homo Magi Spellcraft
+    from: 2003
+    to: 2006
+  - institution: Beauty School
+    degree: Cosmetology
+    from: 1998
+    to: 2001
+  - institution: Liverpool Primary School
+    degree: Primary Education
+    from: 1987
+    to: 1993
+
+certifications:
+  - institution: The Streets of London
+    certification: Advanced Smoking and Drinking
+    year: 1997
+  - institution: Heaven
+    certification: Saviour of the World
+    year: 1990
