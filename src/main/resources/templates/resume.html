@@ -113,7 +113,7 @@
           <li class="times-11 justify" th:each="task : ${experience.formattedTasks}" th:text="${task}"></li>
         </ul>
 
-        <p th:unless="${#strings.isEmpty(experience.collectedStack)}" class="times-11 justify" th:text="${'Stack: ' + experience.collectedStack + '.'}"></p>
+        <p th:unless="${#strings.isEmpty(experience.collectedSkills)}" class="times-11 justify" th:text="${'Skills: ' + experience.collectedSkills + '.'}"></p>
 
         <br />
       </section>

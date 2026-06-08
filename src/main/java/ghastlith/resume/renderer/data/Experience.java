@@ -29,7 +29,7 @@ public record Experience(
     @JsonSetter(nulls = AS_EMPTY)
     List<String> tasks,
     @JsonSetter(nulls = AS_EMPTY)
-    List<String> stack
+    List<String> skills
 ) {
 
   private static final String DATE_PATTERN = "MM/yyyy";
@@ -37,7 +37,7 @@ public record Experience(
   private static final String MESSAGE_FORMAT = "%s%s";
   private static final String PERIOD = ".";
   private static final String SEMICOLON = ";";
-  private static final String STACK_DELIMITER = ", ";
+  private static final String SKILLS_DELIMITER = ", ";
 
   public String formattedFrom() {
     return DATE_FORMATTER.format(from());
@@ -68,10 +68,10 @@ public record Experience(
         .toList();
   }
 
-  public String collectedStack() {
-    return stack().stream()
+  public String collectedSkills() {
+    return skills().stream()
         .sorted()
-        .collect(joining(STACK_DELIMITER));
+        .collect(joining(SKILLS_DELIMITER));
   }
 
   private String formatTask(final String task) {
