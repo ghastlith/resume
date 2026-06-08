@@ -14,10 +14,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
 /**
  * An experience entry used in resume generation, mapped from YAML input data.
  */
+@Builder
 public record Experience(
     @NotNull Company company,
     @Nullable Company client,

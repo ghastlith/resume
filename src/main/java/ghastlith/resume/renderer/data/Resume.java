@@ -17,11 +17,13 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
 /**
  * The information to be used in the resume generation, mapped from YAML input
  * data.
  */
+@Builder
 public record Resume(
     @NotNull Language language,
     @NotBlank String name,
