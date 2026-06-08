@@ -22,9 +22,9 @@ import tools.jackson.dataformat.yaml.YAMLMapper;
 public class FileService {
 
   private final YAMLMapper yamlMapper;
+  private final Path inputFolder;
+  private final Path outputFolder;
 
-  private static final Path INPUT_FOLDER = Path.of("input");
-  private static final Path OUTPUT_FOLDER = Path.of("output");
   private static final Set<String> YAML_EXTENSIONS = Set.of(".yml", ".yaml");
   private static final String EXAMPLE_FILENAME = "example.yml";
   private static final String FILENAME_FORMAT = "(cv-%s) %s.%s";
@@ -37,9 +37,9 @@ public class FileService {
    */
   @SneakyThrows(IOException.class)
   public List<Resume> readEntries() {
-    Files.createDirectories(INPUT_FOLDER);
+    Files.createDirectories(inputFolder);
 
-    try (final var stream = Files.list(INPUT_FOLDER)) {
+    try (final var stream = Files.list(inputFolder)) {
       return stream.filter(Files::isRegularFile)
           .filter(FileService::isYAMLFile)
           .filter(FileService::isNotExampleFile)
@@ -58,14 +58,14 @@ public class FileService {
    */
   @SneakyThrows(IOException.class)
   public Path createPath(final Resume resume, final Format format) {
-    Files.createDirectories(OUTPUT_FOLDER);
+    Files.createDirectories(outputFolder);
 
     final var language = resume.language().getCode();
     final var name = resume.name().toLowerCase();
     final var extension = format.getExtension();
     final var filename = FILENAME_FORMAT.formatted(language, name, extension);
 
-    return OUTPUT_FOLDER.resolve(filename);
+    return outputFolder.resolve(filename);
   }
 
   private static boolean isYAMLFile(final Path path) {
