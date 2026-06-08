@@ -23,8 +23,8 @@ import tools.jackson.dataformat.yaml.YAMLMapper;
 @ExtendWith(MockitoExtension.class)
 public class FileServiceTest {
 
-  @Mock private YAMLMapper mockYamlMapper;
   @TempDir Path directory;
+  @Mock private YAMLMapper mockYamlMapper;
 
   private Path inputFolder;
   private Path outputFolder;
