@@ -1,6 +1,5 @@
 package ghastlith.resume;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,9 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Main implements CommandLineRunner {
 
-  @Autowired private ApplicationContext context;
-  @Autowired private FileService fileService;
-  @Autowired private ResumeGenerator resumeGenerator;
+  private ApplicationContext context;
+  private FileService fileService;
+  private ResumeGenerator resumeGenerator;
 
   private static final int BASE_ERROR_CODE = 1;
 
