@@ -1,5 +1,6 @@
 package ghastlith.resume.renderer.content;
 
+import static java.util.Arrays.stream;
 import static java.util.logging.Level.SEVERE;
 
 import java.io.IOException;
@@ -47,11 +48,11 @@ public class DocumentContent extends Content {
       final var html = renderTemplate();
       final var builder = new PdfRendererBuilder();
 
-      useFonts(builder);
+      stream(DocumentFont.values()).forEach(font -> font.registerOn(builder));
 
-      builder.withHtmlContent(html, EMPTY_HTML_URI);
-      builder.toStream(stream);
-      builder.run();
+      builder.withHtmlContent(html, EMPTY_HTML_URI)
+          .toStream(stream)
+          .run();
     }
   }
 
@@ -63,14 +64,6 @@ public class DocumentContent extends Content {
     context.setVariable(RESUME_CONTEXT, resume);
 
     return engine.process(TEMPLATE_NAME, context);
-  }
-
-  private void useFonts(final PdfRendererBuilder builder) {
-    final var fonts = DocumentFont.values();
-
-    for (final var font : fonts) {
-      font.registerOn(builder);
-    }
   }
 
 }
