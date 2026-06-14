@@ -25,6 +25,7 @@ dependencies {
 
   // tests
   testImplementation("org.springframework.boot:spring-boot-starter-test");
+  testImplementation("de.redsix:pdfcompare:1.1.26");
   testRuntimeOnly("org.junit.platform:junit-platform-launcher");
 
   // lombok
