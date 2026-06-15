@@ -28,8 +28,8 @@ experiences: # array (0+)
       website: url
     role: string*
     from: year-month*
-    to: year-month*
-    description: string*
+    to: year-month
+    description: string
     tasks: # array (0+)
       - string*
     skills: # array (0+)
@@ -39,7 +39,7 @@ degrees: # array (0+)
   - institution: string*
     degree: string*
     from: year*
-    to: year*
+    to: year
 
 certifications: # array (0+)
   - institution: string*
