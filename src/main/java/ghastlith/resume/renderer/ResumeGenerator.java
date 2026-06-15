@@ -47,7 +47,7 @@ public class ResumeGenerator {
    *
    * @throws ConstraintViolationException If resume entries have parsing errors.
    */
-  public void generate(@Valid final List<Resume> entries) {
+  public void generate(final List<@Valid Resume> entries) {
     log.warn(ENTRIES_LOG_FORMAT, entries.size());
 
     for (final var entry : entries) {
