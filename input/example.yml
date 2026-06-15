@@ -10,6 +10,9 @@ experiences:
   - company:
       name: Justice League Dark
       website:
+    client:
+      name: Justice League
+      website: https://www.dc.com/characters/justice-league
     role: Reluctant Leader & Primary Occult Strategist
     from: 2018-10
     to:
@@ -33,6 +36,9 @@ experiences:
 
   - company:
       name: Newcastle Crew
+      website:
+    client:
+      name: Heaven
       website:
     role: Exorcist
     from: 2002-12
