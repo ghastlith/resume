@@ -1,7 +1,6 @@
 package ghastlith.resume.renderer.content;
 
 import static java.util.Arrays.stream;
-import static java.util.logging.Level.SEVERE;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,7 +21,7 @@ import ghastlith.resume.renderer.data.Resume;
 public class DocumentContent extends Content {
 
   static {
-    XRLog.listRegisteredLoggers().forEach(logger -> XRLog.setLevel(logger, SEVERE));
+    XRLog.setLoggingEnabled(false);
   }
 
   private final TemplateEngine engine;
