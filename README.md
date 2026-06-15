@@ -6,7 +6,7 @@ The Markdown output content will be focused only on experiences and will be comp
 
 As for the PDF output, it's rendered based on the result HTML from the current Thymeleaf [template HTML](./src/main/resources/templates/resume.html) with no identifying metadata to increase anonymity.
 
-## input
+## generating resumes
 
 The rendering retrieves and parses the data provided on the input YAML file, so for it to handle correctly the inputted fields it should follow the expected format. The format in question may be found on the [example file](./input/example.yml) provided, or you may use the template below to write your own from scratch. Please note that required fields are annotated with an `asterisk*` at the end.
 
